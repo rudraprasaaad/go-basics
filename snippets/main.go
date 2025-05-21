@@ -2,9 +2,20 @@ package main
 
 import "fmt"
 
+type Shape interface {
+	Area() float64
+}
+
+type Square struct {
+	Size float64
+}
+
 type Rectangle struct {
-	Width  float64
-	Height float64
+	Width, Height float64
+}
+
+func (s *Square) Area() float64 {
+	return s.Size * s.Size
 }
 
 func (r *Rectangle) Area() float64 {
@@ -12,6 +23,9 @@ func (r *Rectangle) Area() float64 {
 }
 
 func main() {
-	rect := Rectangle{Width: 10, Height: 5}
-	fmt.Println("Area:", rect.Area())
+	square := Square{Size: 2}
+	fmt.Println("Area of square is:", square.Area())
+
+	rect := Rectangle{Width: 5, Height: 4}
+	fmt.Println("Area of Rectangle is:", rect.Area())
 }
